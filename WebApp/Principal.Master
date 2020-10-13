@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Principal.master.cs" Inherits="WebApp.Principal" %>
+
+<%@ Register Src="~/Componentes/CtrlMenu.ascx" TagPrefix="Componentes" TagName="CtrlMenu" %>
+<%@ Register Src="~/Componentes/ctHeader.ascx" TagPrefix="Componentes" TagName="ctHeader" %>
+<%@ Register Src="~/Componentes/ctNotificacoes.ascx" TagPrefix="Componentes" TagName="ctNotificacoes" %>
+
+<%@ Register Src="~/Componentes/ctCarrinho.ascx" TagPrefix="uc1" TagName="ctCarrinho" %>
+<%@ Register Src="~/Componentes/ctPedidos.ascx" TagPrefix="uc1" TagName="ctPedidos" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Language" content="pt-br">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>SustentaHub</title>
+
+    <script>
+        const ScriptSource = 'http://<%=Request.Url.Authority%>/Resources/JS/';
+    </script>
+
+    <script type="text/javascript" src="http://<%=Request.Url.Authority%>/Resources/JS/managerJS.js"></script>
+
+
+    <!-- Estilos: Bootstrap, FontAwasome (icones), Tabelas, Select Customizado, Classes proprias e SweetAlert (mensagens customizadas). -->
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Resources/CSS/bootstrap.css" />
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Resources/CSS/all.css" />
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Resources/CSS/responsive.bootstrap4.css" />
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Resources/CSS/bootstrap-select.css" />
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Resources/CSS/default.css" />
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Resources/CSS/sweetalert2.css" />
+    <link runat="server" rel="stylesheet" type="text/css" href="~/Resources/CSS/jquery-ui.min.css" />
+
+    <asp:ContentPlaceHolder ID="Cabecalho" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="page-wrapper chiller-theme toggled">
+
+            <Componentes:CtrlMenu runat="server" ID="CtrlMenu" />
+
+            <main class="page-content">
+                <div class="container-fluid">
+                    <div class="row" style="height: 130px;">
+                        <div class="col-md-9">
+                            <div class="conteudo-central">
+                                <div class="row top-bar">
+                                    <Componentes:ctHeader runat="server" ID="ctHeader" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 lateral" style="max-height: 130px; margin-top: 25px;">
+                            <Componentes:ctNotificacoes runat="server" ID="ctNotificacoes" />
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="conteudo-central">
+                                <asp:ContentPlaceHolder ID="Corpo" runat="server"></asp:ContentPlaceHolder>
+                            </div>
+                        </div>
+                        <div class="col-md-3 lateral">
+                             <uc1:ctPedidos runat="server" ID="ctPedidos" />
+                            <uc1:ctCarrinho runat="server" ID="ctCarrinho" />
+                            <asp:ContentPlaceHolder ID="Lateral" runat="server"></asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </form>
+</body>
+</html>
